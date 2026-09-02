@@ -53,10 +53,10 @@ export default function Cart() {
             <span>Total</span>
             <span>{formatPrice(total)}</span>
           </div>
-          <button type="button" className="btn" disabled>
+          <Link className={`btn ${styles.checkout}`} to="/checkout">
             Checkout
-          </button>
-          <p className={styles.note}>Checkout opens once accounts and orders are ready.</p>
+          </Link>
+          <p className={styles.note}>We confirm every order by phone before dispatch.</p>
         </aside>
       </div>
     </div>

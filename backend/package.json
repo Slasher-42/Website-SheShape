@@ -8,12 +8,17 @@
     "dev": "node --watch --env-file=.env src/server.js",
     "start": "node --env-file=.env src/server.js",
     "db:sync": "node --env-file=.env src/scripts/sync.js",
-    "db:seed": "node --env-file=.env src/scripts/seed.js"
+    "db:seed": "node --env-file=.env src/scripts/seed.js",
+    "make:admin": "node --env-file=.env src/scripts/createAdmin.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1125.0",
+    "@aws-sdk/s3-request-presigner": "^3.1125.0",
+    "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.12.0",
     "pg": "^8.23.0",
     "pg-hstore": "^2.3.4",

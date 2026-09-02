@@ -2,6 +2,9 @@ import { Router } from 'express'
 import { sequelize } from '../db.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import productRoutes from './products.routes.js'
+import authRoutes from './auth.routes.js'
+import orderRoutes from './orders.routes.js'
+import adminRoutes from './admin.routes.js'
 
 const router = Router()
 
@@ -15,5 +18,8 @@ router.get('/health', asyncHandler(async (req, res) => {
 }))
 
 router.use('/products', productRoutes)
+router.use('/auth', authRoutes)
+router.use('/orders', orderRoutes)
+router.use('/admin', adminRoutes)
 
 export default router

@@ -18,3 +18,5 @@ export const sequelize = new Sequelize(process.env.DATABASE_URL, {
 export async function connectDatabase() {
   await sequelize.authenticate()
 }
+
+export default sequelize

@@ -19,6 +19,8 @@
 
   --page: 1200px;
   --gap: 24px;
+
+  color-scheme: only light;
 }
 
 *,

@@ -92,3 +92,32 @@
     flex-wrap: wrap;
   }
 }
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accountName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-light, #9ec6a6);
+}
+
+.logout,
+.login {
+  padding: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.logout:hover,
+.login:hover {
+  opacity: 1;
+}
