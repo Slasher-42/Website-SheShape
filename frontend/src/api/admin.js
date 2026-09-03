@@ -22,6 +22,14 @@ export const adminOrders = {
     api.patch(`/admin/orders/${id}/status`, { status }).then(unwrap)
 }
 
+export const adminPosts = {
+  list: (params) => api.get('/admin/posts', { params }).then((r) => r.data),
+  detail: (id) => api.get(`/admin/posts/${id}`).then(unwrap),
+  create: (payload) => api.post('/admin/posts', payload).then(unwrap),
+  update: (id, payload) => api.patch(`/admin/posts/${id}`, payload).then(unwrap),
+  remove: (id) => api.delete(`/admin/posts/${id}`)
+}
+
 export const adminUploads = {
   presign: (payload) => api.post('/admin/uploads/presign', payload).then(unwrap)
 }

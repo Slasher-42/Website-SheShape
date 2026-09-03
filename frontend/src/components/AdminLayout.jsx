@@ -4,7 +4,8 @@ import styles from './AdminLayout.module.css'
 
 const LINKS = [
   { to: '/admin/products', label: 'Products' },
-  { to: '/admin/orders', label: 'Orders' }
+  { to: '/admin/orders', label: 'Orders' },
+  { to: '/admin/posts', label: 'Blog' }
 ]
 
 export default function AdminLayout() {

@@ -4,6 +4,8 @@ import { Product, PRODUCT_CATEGORIES } from './Product.js'
 import { ProductImage } from './ProductImage.js'
 import Order, { ORDER_STATUSES } from './Order.js'
 import OrderItem from './OrderItem.js'
+import Post from './Post.js'
+import Program, { PROGRAM_STATUSES } from './Program.js'
 
 Product.hasMany(ProductImage, {
   as: 'images',
@@ -25,6 +27,9 @@ OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order' });
 
 OrderItem.belongsTo(Product, { foreignKey: 'productId', as: 'product', onDelete: 'SET NULL' });
 
+User.hasMany(Post, { foreignKey: 'authorId', as: 'posts' })
+Post.belongsTo(User, { foreignKey: 'authorId', as: 'author', onDelete: 'SET NULL' })
+
 export {
   sequelize,
   User,
@@ -32,6 +37,9 @@ export {
   ProductImage,
   Order,
   OrderItem,
+  Post,
+  Program,
   PRODUCT_CATEGORIES,
-  ORDER_STATUSES
+  ORDER_STATUSES,
+  PROGRAM_STATUSES
 }

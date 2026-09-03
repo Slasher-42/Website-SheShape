@@ -3,6 +3,7 @@ import { presignProductImage } from '../controllers/uploads.controller.js';
 import { protect, adminOnly } from '../middleware/auth.js';
 import adminProductRoutes from './admin.products.routes.js';
 import adminOrderRoutes from './admin.orders.routes.js';
+import adminPostRoutes from './admin.posts.routes.js';
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.get('/check', (req, res) => res.json({ data: { ok: true } }));
 router.post('/uploads/presign', presignProductImage);
 router.use('/products', adminProductRoutes);
 router.use('/orders', adminOrderRoutes);
+router.use('/posts', adminPostRoutes);
 
 export default router;

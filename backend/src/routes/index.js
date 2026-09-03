@@ -4,6 +4,8 @@ import { asyncHandler } from '../utils/asyncHandler.js'
 import productRoutes from './products.routes.js'
 import authRoutes from './auth.routes.js'
 import orderRoutes from './orders.routes.js'
+import postRoutes from './posts.routes.js'
+import programRoutes from './programs.routes.js'
 import adminRoutes from './admin.routes.js'
 
 const router = Router()
@@ -20,6 +22,8 @@ router.get('/health', asyncHandler(async (req, res) => {
 router.use('/products', productRoutes)
 router.use('/auth', authRoutes)
 router.use('/orders', orderRoutes)
+router.use('/posts', postRoutes)
+router.use('/programs', programRoutes)
 router.use('/admin', adminRoutes)
 
 export default router
