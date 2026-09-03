@@ -14,6 +14,14 @@ export const adminProducts = {
     api.patch(`/admin/products/${id}/images/order`, { ids }).then(unwrap)
 }
 
+export const adminOrders = {
+  list: (params) => api.get('/admin/orders', { params }).then((r) => r.data),
+  counts: () => api.get('/admin/orders/counts').then(unwrap),
+  detail: (id) => api.get(`/admin/orders/${id}`).then(unwrap),
+  updateStatus: (id, status) =>
+    api.patch(`/admin/orders/${id}/status`, { status }).then(unwrap)
+}
+
 export const adminUploads = {
-  presign: (payload) => api.post('/admin/uploads/presign', payload).then((r) => r.data)
+  presign: (payload) => api.post('/admin/uploads/presign', payload).then(unwrap)
 }

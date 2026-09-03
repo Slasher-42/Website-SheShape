@@ -11,6 +11,14 @@ import styles from './Orders.module.css';
 const PAYMENT_NOTE =
   'Send your payment by MoMo to 0788 000 000, using your order number as the reference. We will call you to confirm before dispatch.';
 
+const HEADINGS = {
+  pending: ['Thank you', "Your order is placed. Keep the number below — you'll need it to check on your order."],
+  paid: ['Payment received', 'We have your payment. Your order is being prepared.'],
+  shipped: ['On its way', 'Your order has left us. We will call you when it arrives.'],
+  delivered: ['Delivered', 'Your order has been delivered. Thank you for shopping with She Shape.'],
+  cancelled: ['Order cancelled', 'This order was cancelled. Nothing is owed. Call us if this is unexpected.']
+};
+
 export default function OrderConfirm() {
   const { orderNumber } = useParams();
   const location = useLocation();
@@ -89,12 +97,12 @@ export default function OrderConfirm() {
     );
   }
 
+  const [heading, blurb] = HEADINGS[order.status] ?? HEADINGS.pending;
+
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Thank you</h1>
-      <p className={styles.subtitle}>
-        Your order is placed. Keep the number below — you&apos;ll need it to check on your order.
-      </p>
+      <h1 className={styles.title}>{heading}</h1>
+      <p className={styles.subtitle}>{blurb}</p>
 
       <div className={styles.card}>
         <div className={styles.cardHead}>
@@ -119,7 +127,9 @@ export default function OrderConfirm() {
           <span>{formatPrice(order.total)}</span>
         </div>
 
-        <p className={styles.payment}>{PAYMENT_NOTE}</p>
+        {(order.status === 'pending' || order.status === 'paid') && (
+          <p className={styles.payment}>{PAYMENT_NOTE}</p>
+        )}
       </div>
 
       <div className={styles.actions}>

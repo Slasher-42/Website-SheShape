@@ -218,6 +218,10 @@ export const create = asyncHandler(async (req, res) => {
   const payload = buildPayload(req.body, { partial: false })
   const urls = readImageUrls(req.body)
 
+  if (payload.isPublished && urls.length === 0) {
+    throw invalid('isPublished', 'Add at least one image before publishing.')
+  }
+
   const product = await sequelize.transaction(async (transaction) => {
     payload.slug = await buildUniqueSlug(Product, payload.slug || payload.name, { transaction })
 
@@ -244,6 +248,13 @@ export const create = asyncHandler(async (req, res) => {
 export const update = asyncHandler(async (req, res) => {
   const product = await findOr404(req.params.id)
   const payload = buildPayload(req.body, { partial: true })
+
+  if (payload.isPublished) {
+    const images = await ProductImage.count({ where: { productId: product.id } })
+    if (images === 0) {
+      throw invalid('isPublished', 'Add at least one image before publishing.')
+    }
+  }
 
   if (payload.slug) {
     payload.slug = await buildUniqueSlug(Product, payload.slug, { excludeId: product.id })
@@ -307,6 +318,12 @@ export const detachImage = asyncHandler(async (req, res) => {
   })
 
   if (!image) throw fail(404, 'Image not found on this product.')
+
+  const remaining = await ProductImage.count({ where: { productId: product.id } })
+
+  if (product.isPublished && remaining <= 1) {
+    throw fail(409, 'A published product needs at least one image. Unpublish it first.')
+  }
 
   const { url } = image
 

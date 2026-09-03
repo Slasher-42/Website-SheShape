@@ -4,6 +4,9 @@ import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
 import AdminLayout from './components/AdminLayout.jsx'
 import AdminProductsPage from './pages/admin/Products.jsx'
+import AdminProductFormPage from './pages/admin/ProductForm.jsx'
+import AdminOrdersPage from './pages/admin/Orders.jsx'
+import AdminOrderDetailPage from './pages/admin/OrderDetail.jsx'
 import Home from './pages/Home.jsx'
 import Shop from './pages/Shop.jsx'
 import Product from './pages/Product.jsx'
@@ -43,6 +46,10 @@ export default function App() {
       >
         <Route index element={<Navigate to="/admin/products" replace />} />
         <Route path="products" element={<AdminProductsPage />} />
+        <Route path="products/new" element={<AdminProductFormPage />} />
+        <Route path="products/:id" element={<AdminProductFormPage />} />
+        <Route path="orders" element={<AdminOrdersPage />} />
+        <Route path="orders/:id" element={<AdminOrderDetailPage />} />
       </Route>
     </Routes>
   )
